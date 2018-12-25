@@ -1,0 +1,148 @@
+<!--pages/course/buyCourse/buyCourse.wxml-->
+<view class='buyCourse'>
+<view class="buyCourse_wrap" style='height:80rpx;line-height:80rpx;'>
+  <view class="buyCourse_cell_order">订单编号：{{orderid}}</view>
+</view>
+<block s-if="orderstate == 1">
+  <block s-key="courseitem" s-for="courseitem, courseitemindex in courselist">
+    <view class="buyCourse_wrap cell_border_top">
+      <image class='buyCourse_img' src='{{courseitem.commodity_cover}}'></image>
+      <view class='buyCourse_detail_view'>
+        <view class="buyCourse_cell_title">{{courseitem.coursename}}</view>
+        <view class="buyCourse_cell_type1">{{courseitem.commodity_title}}</view>
+        <view class="buyCourse_cell_detail">
+          <view class="buyCourse_cell_type">{{courseitem.createtime}}</view>
+          <!-- <view class="buyCourse_cell_type">{{courselistItem.package[1].title}}</view> -->
+          <view class="buyCourse_cell_price">¥{{courseitem.commodity_costprice}}元</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</block>
+<block s-else>
+  <!-- <block wx:if="{{courselist[0].courseid == -1 && courselist[0].selected == 1}}"> -->
+    <block s-key="courselist" s-for="courselistitem, courselistitemindex in courselist">
+    <!-- <block wx:key="banxinglistitem" wx:for="{{courselist[courselistitemindex+1].banxinglist}}" wx:for-item="banxinglistitem" wx:for-index="banxinglistitemindex"> -->
+      <!-- <block wx:if="{{banxinglistitem.selected == 1}}"> -->
+        <view class="buyCourse_wrap cell_border_top">
+          <image class='buyCourse_img' src='{{courselistitem.commodity_cover}}'></image>
+          <view class='buyCourse_detail_view'>
+            <view class="buyCourse_cell_title">{{courselistitem.coursename}}</view>
+            <view class="buyCourse_cell_type1">{{courselistitem.commodity_title}}</view>
+            <view class="buyCourse_cell_detail">
+              <view class="buyCourse_cell_type">{{courselistitem.createtime}}</view>
+              <!-- <view class="buyCourse_cell_type">{{courselistItem.package[1].title}}</view> -->
+              <!-- <view class="buyCourse_cell_price">¥{{totalprice}}元</view> -->
+              <view class="buyCourse_cell_price">¥{{courselistitem.commodity_costprice}}元</view>
+            </view>
+          </view>
+
+        </view>
+      <!-- </block> -->
+    <!-- </block>
+    </block> -->
+  </block>
+  <!-- <block wx:else>
+    <block wx:key="courseitem" wx:for="{{courselist}}" wx:for-item="courseitem" wx:for-index="courseitemindex">
+      <block wx:if="{{courseitem.selected == 1}}">
+        <block wx:key="banxinglistitem" wx:for="{{courseitem.banxinglist}}" wx:for-item="banxinglistitem" wx:for-index="banxinglistitemindex">
+          <block wx:if="{{banxinglistitem.selected == 1}}">
+            <view class="buyCourse_wrap cell_border_top">
+              <view class="buyCourse_cell_title">{{courseitem.title}}</view>
+              <view class="buyCourse_cell_detail">
+                <view class="buyCourse_cell_type">{{banxinglistitem.title}}</view>
+                <!-- <view class="buyCourse_cell_type">{{courselistItem.package[1].title}}</view> -->
+                <!-- <view class="buyCourse_cell_price">¥{{banxinglistitem.price}}元</view>
+              </view>
+            </view>
+          </block>
+        </block>
+      </block>
+    </block>
+  </block> -->
+</block>
+<view class='cell_br'></view>
+<view class='balance' bindtap='actionSheetbindchange'>
+  <view class='balance_left'>
+    <image src='../../../image/me/yhq.png'></image>
+    <view>优惠券</view>
+  </view>
+  <view class='balance_right'>
+    <view class="cell_ft cell_ft_in_access" style='right:0rpx;'></view>
+    <view>{{coupon.list.length == 0 ? "暂无可用优惠券" : ""}}</view>
+  </view>
+</view>
+<view class='balance'>
+  <view class='balance_left'>
+    <image src='../../../image/me/bkb.png'></image>
+    <view>帮考币：{{bkgoldA}}</view>
+    <!-- <block wx:if="{{balance.balance >= bkgold}}">
+      <view>帮考币：{{switchChecked2 == 0 ? balance.balance-totalprice : balance.bkgold}}元</view>
+    </block>
+    <block wx:else>
+      <view>帮考币：{{switchChecked2 == 0 ? '0.00' : balance.bkgold}}元</view>
+    </block> -->
+  </view>
+  <view class='balance_right'>
+    <switch checked='{{balance.bkgold > 0 && switchChecked2 == 0 ? true : false}}' bindchange="switchChange2" color="#279df7" />
+    <!-- <view>{{bkgoldB}}</view> -->
+    <!-- <block wx:if="{{balance.balance >= bkgold}}">
+      <view>{{switchChecked2 == 0 ? -totalprice : '0.00'}}元</view>
+    </block>
+    <block wx:else>
+      <view>{{switchChecked2 == 0 ? -balance.bkgold : '0.00'}}元</view>
+    </block> -->
+  </view>
+</view>
+<view class='balance'>
+  <view class='balance_left'>
+    <image src='../../../image/me/ye.png'></image>
+    <view>余\t额：{{balanceA}}</view>
+    <!-- <block wx:if="{{balance.balance >= price}}">
+      <view>余\t额：{{switchChecked1 == 0 ? balance.balance-totalprice : balance.balance}}元</view>
+    </block>
+    <block wx:else>
+      <view>余\t额：{{switchChecked1 == 0 ? '0.00' : balance.balance}}元</view>
+    </block> -->
+  </view>
+  <view class='balance_right'>
+    <switch checked='{{balance.balance > 0 && switchChecked1 == 0 ? true : false}}' bindchange="switchChange1" color="#279df7" />
+    <!-- <view>{{balanceB}}元</view> -->
+    <!-- <block wx:if="{{switchChecked1 == 0}}">
+      <block wx:if="{{balance.balance - totalprice  >= 0}}">
+        <view>{{-totalprice}}元</view>
+      </block>
+      <block wx:else>
+        <view>{{-balance.balance}}元</view>
+      </block>
+    </block>
+    <block wx:else>
+      <view>0.00元</view>
+    </block> -->
+    
+  </view>
+</view>
+</view>
+<view class="buyCourse_submit">
+  <view class="buyCourse_button_price"><text>应付金额：</text>¥{{price}}元</view>
+  <view bindtap='createpayorder' class="buyCourse_button_sure">确认支付</view>
+</view>
+<!-- <action-sheet hidden="{{choiceCouponHidden}}" bindchange="actionSheetbindchange">
+  <view class='choiceCourse'>
+    <view class='title'>选择优惠券</view>
+    <view class='courseList'>
+      <block wx:key="couponList" wx:for="{{couponList}}" wx:for-item="couponItem" wx:for-index="couponIndex">
+        <view class='courseItem' bindtap='couponChoiceTap' data-index='{{couponIndex}}' data-coupontype='{{couponItem.coupontype}}'>
+          <block wx:if="{{couponItem.courseid != -1}}">
+          <view class=' courseTitle '>{{couponItem.title}}({{couponItem.des}})</view>
+          </block>
+          <block wx:else>
+            <view class=' courseTitle '>{{couponItem.title}}</view>
+          </block>
+          <image src='{{couponItem.selected == 1 ? "../../../image/other/buycourse_select_checked.png" : "../../../image/other/buycourse_select_unchecked.png"}} '></image>
+        </view>
+     </block>
+  </view>
+  <view class='sureChoice ' bindtap='sureChoiceCouponTap'>确认</view>
+  </view>
+</action-sheet> -->

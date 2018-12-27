@@ -55,6 +55,8 @@ Page({
     countDownTimeTitle: '00:00:00后结束',
     touchStart: 0,
     giftBagHidden: true,
+    lingquBtn: true,
+    disabled: false,
     groupCompleteList: {
       "errcode": 0, "errmsg": "ok", "list": [{
         "addtime": "", "receivestate": "0", "nickname": "", "unionid": "", "templateid": "", "openid": "", "groupid": "", "headimgurl": "../../../image/fightgroups/user_noportrait.png"
@@ -101,7 +103,7 @@ Page({
       timingFunction: 'linear',
       delay: 50,
       transformOrigin: '50% 50%',
-      success: function (res) {}
+      success: function (res) { }
     });
 
     setInterval(function () {
@@ -155,8 +157,9 @@ Page({
     //   this.wxLogin();
     // }
     var openid = swan.getStorageSync('wx_openid');
+    var wx_session_key = swan.getStorageSync('wx_session_key');
     var unionid = swan.getStorageSync('wx_unionid');
-    if (openid == "" || unionid == "") {
+    if (openid == "" || wx_session_key == "") {
       this.wxLogin();
     }
   },
@@ -179,12 +182,12 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
@@ -194,7 +197,7 @@ Page({
     var sharetemplateid = this.data.templateid;
     var sharecategoryid = this.data.categoryid;
     console.log(this.data.categoryid + "/" + this.data.groupid + "/" + this.data.templateid);
-    if (sharegroupid == undefined || sharetemplateid == undefined || sharecategoryid == undefined) {} else {
+    if (sharegroupid == undefined || sharetemplateid == undefined || sharecategoryid == undefined) { } else {
       return {
         title: shareTitle,
         imageUrl: shareImg,
@@ -216,10 +219,9 @@ Page({
     this.setData({ categoryid: categoryid });
 
     var wx_openid = swan.getStorageSync('wx_openid');
+    var wx_session_key = swan.getStorageSync('wx_session_key');
     var wx_unionid = swan.getStorageSync('wx_unionid');
-    console.log(wx_openid);
-    console.log(wx_openid);
-    if (wx_openid == "" || wx_unionid == "") {
+    if (wx_openid == "" || wx_session_key == "") {
       this.wxLogin();
     } else {
       //判断缓存里是否已经存在userinfo
@@ -234,7 +236,7 @@ Page({
       }
     }
   },
-  directOpenClick: function () {},
+  directOpenClick: function () { },
   getTemplateByCategoryid: function () {
     var categoryid = this.data.categoryid;
     if (categoryid == "" || categoryid == null || categoryid == undefined) {
@@ -281,16 +283,16 @@ Page({
                   swan.switchTab({
                     url: url
                   });
-                } else {}
+                } else { }
               }
             });
           }
           //this.setData({ publicCourse: data });
         } else {
-            // common.showToast({
-            //   title: data.errmsg
-            // });
-          }
+          // swan.showToast({
+          //   title: data.errmsg
+          // });
+        }
       }
     });
   },
@@ -321,8 +323,8 @@ Page({
       methods: 'POST',
       data: {
         templateid: this.data.templateList[0].templateid,
-        unionid: unionid,
         openid: openid,
+        unionid: unionid,
         nickname: nickname,
         headimgurl: headimgurl,
         receivestate: 0 //0已领取，1未领取
@@ -345,8 +347,10 @@ Page({
           this.setData({ templateid: data.templateid });
           this.getGroupCompleteList();
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -368,13 +372,11 @@ Page({
     }
     var that = this;
     var openid = swan.getStorageSync('wx_openid');
-    var unionid = swan.getStorageSync('wx_unionid');
     api.setGroupsDetails({
       methods: 'POST',
       data: {
         groupid: this.data.groupid,
         templateid: this.data.templateid,
-        unionid: unionid,
         openid: openid,
         nickname: nickname,
         headimgurl: headimgurl,
@@ -411,8 +413,10 @@ Page({
             }
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -483,8 +487,22 @@ Page({
             }
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          // swan.showToast({
+          //   title: data.errmsg,
+          //   icon: 'success',
+          //   duration: 1500
+          // });
+          this.setData({
+            lingquBtn: false,
+            disabled: true
+          });
+          swan.showModal({
+            title: '提示',
+            content: '活动已结束!',
+            showCancel: false,
+            success: res => {
+              return;
+            }
           });
         }
       }
@@ -506,8 +524,10 @@ Page({
         if (data.errcode == 0) {
           this.setData({ courseCommodityList: data.list });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -516,7 +536,6 @@ Page({
   receiveCommodity: function () {
     var commodityid = swan.getStorageSync('commodityid');
     var openid = swan.getStorageSync('wx_openid');
-    var unionid = swan.getStorageSync('wx_unionid');
     api.receiveCommodity({
       methods: 'POST',
       data: {
@@ -524,7 +543,6 @@ Page({
         // templateid: 11,
         groupid: this.data.groupid,
         templateid: this.data.templateid,
-        unionid: unionid,
         openid: openid,
         market: app.globalData.market
       },
@@ -542,12 +560,14 @@ Page({
             confirmText: "确定",
             showCancel: false,
             success: function (res) {
-              if (res.confirm) {}
+              if (res.confirm) { }
             }
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -556,12 +576,10 @@ Page({
   createpintuanorder: function (receivestate) {
     var bk_userinfo = swan.getStorageSync('bk_userinfo');
     var openid = swan.getStorageSync('wx_openid');
-    var unionid = swan.getStorageSync('wx_unionid');
     api.createpintuanorder({
       methods: 'POST',
       data: {
         groupid: this.data.groupid,
-        unionid: unionid,
         uid: bk_userinfo.uid,
         market: app.globalData.market
       },
@@ -624,8 +642,10 @@ Page({
             });
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -665,8 +685,10 @@ Page({
           //生成同一订单成功后调用微信支付
           this.weixinpay(orderguid, orderid, data.out_trade_no);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -727,8 +749,10 @@ Page({
           var prepay_id = data.prepay_id;
           this.paySign(prepay_id, orderguid);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -778,7 +802,7 @@ Page({
               });
             }
           });
-          // common.showToast({
+          // swan.showToast({
           //   title: data.errmsg
           // });
           clearInterval(payInterval);
@@ -863,7 +887,7 @@ Page({
     if (interval) {
       clearInterval(interval);
       interval = null;
-    } else {}
+    } else { }
   },
   /**
     * 字符串转换为时间
@@ -897,7 +921,7 @@ Page({
     return `${mm}:${ss}`;
   },
   /**
-  * 微信登录
+  * 百度登录
   */
   wxLogin: function () {
     var that = this;
@@ -914,16 +938,9 @@ Page({
 
   //获取opened 
   getOpenIdAndSessionKey: function (code) {
-    // console.log(code);
     var that = this;
-    var parameter = 'appid(bkw)' + getApp().globalData.appid + '(b*k*w)secret(bkw)' + getApp().globalData.appsecret + '(b*k*w)js_code(bkw)' + code + '(b*k*w)grant_type(bkw)authorization_code';
-    api.getTransferRequest({
-      methods: 'POST',
-      data: {
-        url: 'https://api.weixin.qq.com/sns/jscode2session',
-        method: 'GET',
-        parameter: parameter
-      },
+    swan.request({
+      url: 'https://openapi.baidu.com/nalogin/getSessionKeyByCode?code=' + code + '&client_id=' + getApp().globalData.sh_key + '&sk=' + getApp().globalData.appsecret,
       success: res => {
         var data = res.data;
         console.log(data);
@@ -995,7 +1012,7 @@ Page({
             country: data.country,
             language: data.language
             // this.setData({ userinfo: userinfo });
-          };swan.setStorageSync('userinfo', userinfo);
+          }; swan.setStorageSync('userinfo', userinfo);
           swan.setStorageSync('wx_unionid', data.unionid);
           this.checkOpenPower();
           request.request_thirdauth(40004);
@@ -1060,15 +1077,7 @@ Page({
     that.setData({ headPortrait: res.userInfo.avatarUrl });
     that.setData({ username: res.userInfo.nickName });
 
-    //判断是否存在unionid
-    var unionid = swan.getStorageSync('wx_unionid');
-    if (unionid == "") {
-      that.getweixin_unionid();
-    } else {
-      //获取微信openid、unionid后，检测是否绑定了帮考网账户，绑定了直接登录
-      request.request_thirdauth(40004);
-    }
-    // that.checkFight();
+    request.request_thirdauth(40004);
   },
   modalSureClick: function () {
     this.showCustomModal(true);

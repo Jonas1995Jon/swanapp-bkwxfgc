@@ -32,7 +32,7 @@
     <view class='ordercourse_left'>订单课程</view>
   </view>
   <block s-key="order" s-for="orderItem, myorderNoIndex in order.courselist">
-    <view class='order_cell'>
+    <view class='order_cell' style='{{myorderNoIndex == order.courselist.length - 1 ? "padding-bottom: 98rpx;" : ""}}'>
       <view class='order_course'>{{orderItem.coursename}}({{orderItem.commodity_title}})</view>
       <view class='order_bxje order_money'>{{orderItem.commodity_costprice}}元</view>
     </view>

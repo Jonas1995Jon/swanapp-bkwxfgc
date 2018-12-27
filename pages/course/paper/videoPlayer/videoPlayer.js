@@ -42,7 +42,7 @@ Page({
     courseid = swan.getStorageSync('courseid');
 
     var videoUrl = options.videoUrl;
-    console.log(decodeURI(decodeURI(videoUrl)));
+    console.log(decodeURI(videoUrl));
     this.setData({ videoUrl: decodeURI(videoUrl) });
     var channelnumber = options.channelnumber;
     if (channelnumber != undefined) {

@@ -48,37 +48,37 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {}, /*清除密码和检测输入*/
+  onShareAppMessage: function () { }, /*清除密码和检测输入*/
   bindKeyInput: function (e) {
     var index = e.currentTarget.dataset.hi;
     var thisText = e.detail.value;
@@ -270,16 +270,20 @@ Page({
   },
   checkCode: function () {
     if (this.data.focus_value1 == "" || this.data.focus_value2 == "" || this.data.focus_value3 == "" || this.data.focus_value4 == "" || this.data.focus_value5 == "" || this.data.focus_value6 == "") {
-      common.showToast({
-        title: '请输入6位验证码'
+      swan.showToast({
+        title: '请输入6位验证码',
+        icon: 'success',
+        duration: 1500
       });
     } else {
       var yzm = this.data.focus_value1 + this.data.focus_value2 + this.data.focus_value3 + this.data.focus_value4 + this.data.focus_value5 + this.data.focus_value6;
       if (yzm.length == 6) {
         this.checkyzm(yzm);
       } else {
-        common.showToast({
-          title: '请输入6位验证码'
+        swan.showToast({
+          title: '请输入6位验证码',
+          icon: 'success',
+          duration: 1500
         });
       }
     }
@@ -327,8 +331,10 @@ Page({
             this.countdown(this);
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -415,8 +421,10 @@ Page({
           });
           swan.navigateBack({});
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

@@ -413,7 +413,7 @@ display: inline-block;
   width: 44rpx;
   height: 37rpx;
   position: relative;
-  top:10rpx;
+  top:4rpx;
 }
 .list_bag_content_btn text{
   margin-left: 20rpx;

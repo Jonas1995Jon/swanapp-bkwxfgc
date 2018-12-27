@@ -45,7 +45,7 @@
   </view>
 </view>
 <!-- 拼团 -->
-<block s-if="templateList.length > 0 && redpacketHidden == true">
+<!-- <block s-if="templateList.length > 0 && redpacketHidden == true">
   <view class="red_packet1" bindtap="redPacketClick" style="{{touchStart == 0 ? 'right:20rpx;' : 'right:-60rpx;'}}">  
     <image src="../../image/fightgroups/share_redpacket.png"></image> 
   </view>
@@ -57,6 +57,4 @@
       <image bindtap='redpacketCloseClick' class='close' src="../../image/fightgroups/redpacket_bg_close.png"></image>
     </view>
   </view>
- </view>
-<!-- <import src="../modal/modal.wxml"/>
-<template is="modal" data="{{modal}}" ></template> -->
+ </view> -->

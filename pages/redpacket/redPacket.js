@@ -194,22 +194,22 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
@@ -394,7 +394,7 @@ Page({
             confirmText: "确定",
             showCancel: false,
             success: function (res) {
-              if (res.confirm) {} else {
+              if (res.confirm) { } else {
                 return;
               }
             }
@@ -656,8 +656,10 @@ Page({
           }
           //this.setData({ publicCourse: data });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -741,8 +743,10 @@ Page({
             this.setData({ redpacketHidden: true });
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -790,8 +794,10 @@ Page({
           data.vod_timelength = this.parseTime(data.vod_timelength);
           this.setData({ topCountList: data });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -1028,8 +1034,10 @@ Page({
             });
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -1082,8 +1090,10 @@ Page({
           request.request_thirdauth(0);
         } else {
           //尚未绑定帮考网账号等错误
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -1139,7 +1149,7 @@ Page({
     } else {
       if (type == 14) {
         this.checkIsBuy(url, type);
-      } else {}
+      } else { }
     }
   },
   checkIsBuy: function (index, type) {

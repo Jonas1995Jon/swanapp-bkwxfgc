@@ -113,7 +113,7 @@ Page({
         courselist[i].createtime = this.data.order.createtime;
       }
     }
-    var url = '../buyCourse/buyCourse?commodityid=' + commodityid + '&price=' + this.data.order.totalprice + '&coursePackage=' + JSON.stringify(coursePackage) + '&courselist=' + JSON.stringify(courselist) + '&state=1' + '&orderguid=' + orderguid + '&orderid=' + orderid + '&price=' + price;
+    var url = '../buyCourse/buyCourse?commodityid=' + commodityid + '&price=' + this.data.order.totalprice + '&coursePackage=' + JSON.stringify(coursePackage) + '&courselist=' + encodeURIComponent(JSON.stringify(courselist)) + '&state=1' + '&orderguid=' + orderguid + '&orderid=' + orderid + '&price=' + price;
     swan.navigateTo({
       url: url
     });

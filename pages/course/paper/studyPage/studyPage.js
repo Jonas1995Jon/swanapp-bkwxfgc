@@ -1256,9 +1256,9 @@ Page({
       knowpointcode = this.data.mainqueArr[index].zhishidian[0].knowpointcode;
     }
     videoUrl = videoUrl.replace("http://", "https://");
-    var url = '../videoPlayer/videoPlayer?videoUrl=' + encodeURI(videoUrl) + '&channelnumber=' + knowpointcode;
+    var url = '../videoPlayer/videoPlayer?videoUrl=' + encodeURIComponent(videoUrl) + '&channelnumber=' + knowpointcode;
     swan.navigateTo({
-      url: encodeURI(url)
+      url: url
     });
   },
   bindAccount: function () {

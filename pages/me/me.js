@@ -130,33 +130,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+    var bk_userinfo = swan.getStorageSync('bk_userinfo');
+    var bk_userinfo_tell = swan.getStorageSync('bk_userinfo_tell');
+    var bk_account = swan.getStorageSync('bk_account');
+    var userinfo = swan.getStorageSync('userinfo');
+
     //绑定及解绑刷新页面
     if (this.data.refresh == 1) {
       courseid = swan.getStorageSync('courseid');
       this.checkcourse();
       this.mymembertype();
-      var bk_userinfo = swan.getStorageSync('bk_userinfo');
-      var bk_userinfo_tell = swan.getStorageSync('bk_userinfo_tell');
-      var bk_account = swan.getStorageSync('bk_account');
-      var userinfo = swan.getStorageSync('userinfo');
-      if (bk_userinfo_tell == '') {
-        this.setData({
-          username: userinfo.nickName,
-          account: ''
-        });
-      } else {
-        if (bk_account != '') {
-          this.setData({
-            username: bk_account.nickname,
-            account: bk_account
-          });
-        } else {
-          this.setData({
-            username: bk_userinfo.nickname,
-            account: ''
-          });
-        }
-      }
       this.setData({
         userinfo: bk_userinfo,
         bk_userinfo_tell: bk_userinfo_tell
@@ -174,6 +158,26 @@ Page({
     }
     if (this.data.account == undefined) {
       this.myaccount();
+    }
+
+    // 刷新退出和登录后的昵称
+    if (bk_userinfo_tell == '') {
+      this.setData({
+        username: userinfo.nickName,
+        account: ''
+      });
+    } else {
+      if (bk_account != '') {
+        this.setData({
+          username: bk_account.nickname,
+          account: bk_account
+        });
+      } else {
+        this.setData({
+          username: bk_userinfo.nickname,
+          account: ''
+        });
+      }
     }
   },
 
@@ -202,7 +206,7 @@ Page({
    */
   onShareAppMessage: function () { },
   /**
-   * 微信登录
+   * 百度登录
    */
   wxLogin: function () {
     var that = this;

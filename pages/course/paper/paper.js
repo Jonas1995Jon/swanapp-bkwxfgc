@@ -87,8 +87,9 @@ Page({
       this.loadquestionByQid(paperindex, 1);
     }
     var wx_openid = swan.getStorageSync('wx_openid');
+    var wx_session_key = swan.getStorageSync('wx_session_key');
     var wx_unionid = swan.getStorageSync('wx_unionid');
-    if (wx_openid == "" || wx_unionid == "") {
+    if (wx_openid == "" || wx_session_key == "") {
       this.wxLogin();
     } else {
       //判断缓存里是否已经存在userinfo
@@ -142,7 +143,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
@@ -173,27 +174,27 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
 
   loadquestion: function (paperindex, isparsecontent, isChildren) {
     var unitid = this.data.unitid;
@@ -960,17 +961,10 @@ Page({
     var province = userInfo.province;
     var city = userInfo.city;
     var country = userInfo.country;
-    //判断是否存在unionid
-    var unionid = swan.getStorageSync('wx_unionid');
-    if (unionid == "") {
-      that.getweixin_unionid();
-    } else {
-      //获取微信openid、unionid后，检测是否绑定了帮考网账户，绑定了直接登录
-      swan.navigateTo({
-        url: 'account/account'
-      });
-      request.request_thirdauth(0);
-    }
+    swan.navigateTo({
+      url: 'account/account'
+    });
+    request.request_thirdauth(0);
   },
   getAccessToken: function (event) {
     var parameter = 'grant_type=client_credential&appid=' + getApp().globalData.appid + '&secret=' + getApp().globalData.appsecret;
@@ -989,16 +983,9 @@ Page({
   },
   //获取opened 
   getOpenIdAndSessionKey: function (code) {
-    // console.log(code);
     var that = this;
-    var parameter = 'appid(bkw)' + getApp().globalData.appid + '(b*k*w)secret(bkw)' + getApp().globalData.appsecret + '(b*k*w)js_code(bkw)' + code + '(b*k*w)grant_type(bkw)authorization_code';
-    api.getTransferRequest({
-      methods: 'POST',
-      data: {
-        url: 'https://api.weixin.qq.com/sns/jscode2session',
-        method: 'GET',
-        parameter: parameter
-      },
+    swan.request({
+      url: 'https://openapi.baidu.com/nalogin/getSessionKeyByCode?code=' + code + '&client_id=' + getApp().globalData.sh_key + '&sk=' + getApp().globalData.appsecret,
       success: res => {
         var data = res.data;
         console.log(data);
@@ -1061,7 +1048,7 @@ Page({
     });
   },
   /**
-  * 微信登录
+  * 百度登录
   */
   wxLogin: function () {
     var that = this;

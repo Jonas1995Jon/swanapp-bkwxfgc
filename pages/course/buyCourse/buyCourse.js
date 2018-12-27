@@ -39,15 +39,7 @@ Page({
     console.log(options);
     var classType = options.classType;
     var commodityid = options.commodityid;
-    // var coursePackage = JSON.parse(options.coursePackage);
-
     var courselist = JSON.parse(options.courselist);
-    // if (options.createtime != undefined){
-    //   courselist.createtime = options.createtime;
-    // }
-
-    // console.log(courselist)
-    // this.setData({ price: price });
     this.setData({ classType: classType });
     this.setData({ commodityid: commodityid });
     // this.setData({ coursePackage: coursePackage });
@@ -65,6 +57,17 @@ Page({
       this.setData({ totalprice: options.price });
       this.buycourse();
     } else {
+
+      // 解决链接少个/问题
+      let patt = /http[s]?:\/[^/].*\.(jpg|png)/;
+      if (courselist.length > 0) {
+        for (let i = 0; i < courselist.length; i++) {
+          if (patt.test(courselist[i].commodity_cover)) {
+            courselist[i].commodity_cover = courselist[i].commodity_cover.replace(/http[s]?:\//, 'https://');
+          }
+        }
+      }
+
       this.setData({ orderstate: options.state });
       this.setData({ orderguid: options.orderguid });
       this.setData({ orderid: options.orderid });
@@ -111,32 +114,10 @@ Page({
   onShareAppMessage: function () { },
   //获取考试类别
   buycourse: function (event) {
-    // var coursePackage = this.data.coursePackage;
-    // if (courselistItem.package.length <= 1){
-    //   swan.showToast({
-    //     title: '此课程暂无可购买的班型',
-    //     duration: 3000
-    //   });
-    //   return;
-    //   // packages = courselistItem.package[0];
-    // }
-
-
-    // var totalprice = this.data.price;
     var bk_userinfo = swan.getStorageSync('bk_userinfo');
     var sessionid = bk_userinfo.sessionid;
     var uid = bk_userinfo.uid;
-    // console.log('sessionid' + sessionid);
-    // var data = [{
-    //   coursename: coursePackage.title,
-    //   courseid: coursePackage.id,
-    //   categoryid: coursePackage.categoryid,
-    //   coursetype: coursePackage.coursetype,
-    //   price: totalprice,
-    //   studytime: coursePackage.xueshi,
-    // }];
     //生成订单
-
     api.buycourse({
       methods: 'POST',
       data: {
@@ -167,16 +148,11 @@ Page({
       }
     });
   },
-  //生成微信订单
+  //生成订单
   createpayorder: function () {
     if (parseFloat(this.data.price) != parseFloat(this.data.totalprice) && this.data.checkorder == 0) {
       this.checkorder();
     } else {
-      //测试代码
-      // interval = setInterval(function () {
-      //   that.checkState();
-      //   //循环执行代码  
-      // }, 3000) //循环时间 这里是3秒
       var that = this;
       var bk_userinfo = swan.getStorageSync('bk_userinfo');
       var sessionid = bk_userinfo.sessionid;

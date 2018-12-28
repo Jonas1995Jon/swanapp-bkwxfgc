@@ -8,7 +8,12 @@
   <swiper class='swiper' bindchange="swiperChange" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block s-for="lunboitem, index in lunbolist" s-key="lunbo">
       <swiper-item class="swiper_item">
-        <image src="{{lunboitem.imglink}}" bindtap='buycourse' class="slide-image" />
+        <block s-if="{{mobileOS == 'ios'}}">
+          <image src="{{lunboitem.imglink}}" class="slide-image" />
+        </block>
+        <block s-else>
+          <image src="{{lunboitem.imglink}}" bindtap='buycourse' class="slide-image" />
+        </block>        
       </swiper-item>
     </block>
   </swiper>

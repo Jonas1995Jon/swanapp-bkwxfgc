@@ -90,6 +90,7 @@ Page({
     // this.lunbo();
     this.checkcourse_v9();
     this.bkwappindexadlist();
+    this.checkSystemOS();
   },
 
   /**
@@ -1188,6 +1189,24 @@ Page({
     var url = '../course/buyCourse/buyCourseDetail/buyCourseDetail';
     swan.navigateTo({
       url: url
+    });
+  },
+  checkSystemOS: function () {
+    var that = this;
+    swan.getSystemInfo({
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          systemInfo: res
+        });
+        if (res.platform == "devtools") {
+          that.setData({ "mobileOS": "devtools" });
+        } else if (res.platform == "ios") {
+          that.setData({ "mobileOS": "ios" });
+        } else if (res.platform == "android") {
+          that.setData({ "mobileOS": "android" });
+        }
+      }
     });
   },
   showCustomModal: function (authorizationHidden) {

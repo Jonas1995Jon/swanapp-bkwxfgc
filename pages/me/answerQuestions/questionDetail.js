@@ -172,8 +172,10 @@ Page({
           }
           this.setData({ questionList: questionList });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -204,8 +206,10 @@ Page({
             delta: 1
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -255,8 +259,10 @@ Page({
             delta: 1
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

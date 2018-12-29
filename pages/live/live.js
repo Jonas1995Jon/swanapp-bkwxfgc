@@ -260,8 +260,10 @@ Page({
               this.setData({ action: 'watchvod' });
               this.setData({ module: '26' });
             } else {
-              common.showToast({
-                title: '此课程暂无直播课程！'
+              swan.showModal({
+                title: '提示',
+                content: '此课程暂无直播课程！',
+                showCancel: false
               });
               if (this.data.videoContext.action.data != undefined) {
                 this.data.videoContext.stop();
@@ -277,8 +279,10 @@ Page({
             this.learnJump(learnCheckIndex);
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -673,7 +677,7 @@ Page({
         if (data.errcode == 0) {
           this.setData({ liveCourseList: data });
         } else {
-          common.showToast({
+          swan.showToast({
             title: data.errmsg
           });
         }
@@ -692,7 +696,7 @@ Page({
         if (data.errcode == 0) {
           this.setData({ publicCourseList: data });
         } else {
-          common.showToast({
+          swan.showToast({
             title: data.errmsg
           });
         }
@@ -718,7 +722,7 @@ Page({
         if (data.errcode == 0) {
           this.setData({ publicCourse: data });
          } else {
-          common.showToast({
+          swan.showToast({
             title: data.errmsg
           });
         }

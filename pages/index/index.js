@@ -279,8 +279,10 @@ Page({
         } else if (data.errcode == 40052) {
           request.request_thirdauth(0);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -380,7 +382,7 @@ Page({
               if (res.confirm) {}
             }
           });
-          // common.showToast({
+          // swan.showToast({
           //   title: data.errmsg
           // });
         }
@@ -411,8 +413,10 @@ Page({
             url: encodeURI(url)
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -600,8 +604,10 @@ Page({
             });
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

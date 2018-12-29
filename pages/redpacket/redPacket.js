@@ -977,9 +977,28 @@ Page({
         });
         break;
       case 2:
-        swan.navigateTo({
-          url: '../learn/liveVideoNum/liveVideoNum'
-        });
+        if (bk_userinfo == '' || bk_userinfo == null) {
+          swan.showModal({
+            title: '温馨提示',
+            content: '您尚未登录帮考网，请先登录！',
+            confirmText: "立即登录",
+            cancelText: "残忍拒绝",
+            success: function (res) {
+              if (res.confirm) {
+                var url = '../me/bind/bind';
+                swan.navigateTo({
+                  url: url
+                });
+              } else {
+                return;
+              }
+            }
+          });
+        } else {
+          swan.navigateTo({
+            url: '../learn/liveVideoNum/liveVideoNum'
+          });
+        }
         break;
       case 3:
         swan.switchTab({

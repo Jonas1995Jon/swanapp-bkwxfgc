@@ -48,7 +48,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
@@ -62,27 +62,27 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
   swiperChange: function (e) {
     var currnet = e.detail.current;
     if (currnet == 0) {
@@ -180,115 +180,15 @@ Page({
           this.setData({ questionFinishList: questionFinishList });
           this.setData({ questionList: data.list });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
     });
   },
-  // //有问必答_获取对话详情
-  // getConversation: function () {
-  //   var categoryid = wx.getStorageSync('categoryid');
-  //   var courseid = wx.getStorageSync('courseid');
-  //   api.getConversation({
-  //     methods: 'POST',
-  //     data: {
-  //       sessionid: this.data.sessionid,
-  //       uid: this.data.uid,
-  //       orderid: this.data.orderid,
-  //     },
-  //     success: (res) => {
-  //       wx.hideToast();
-  //       var data = res.data;
-  //       if (data.errcode == 0) {
-  //         console.log(data);
-  //       } else {
-  //         common.showToast({
-  //           title: data.errmsg
-  //         });
-  //       }
-  //     }
-  //   })
-  // },
-  // //有问必答_回复对话
-  // webaddConversation: function () {
-  //   api.webaddConversation({
-  //     methods: 'POST',
-  //     data: {
-  //       sessionid: this.data.sessionid,
-  //       uid: this.data.uid,
-  //       orderid: this.data.orderid,
-  //       content: '',
-  //       reply_attachment: '',
-  //     },
-  //     success: (res) => {
-  //       wx.hideToast();
-  //       var data = res.data;
-  //       if (data.errcode == 0) {
-  //         console.log(data);
-  //       } else {
-  //         common.showToast({
-  //           title: data.errmsg
-  //         });
-  //       }
-  //     }
-  //   })
-  // },
-  // //有问必答_新建工单
-  // webaddQuestion: function () {
-  //   var categoryid = wx.getStorageSync('categoryid');
-  //   var courseid = wx.getStorageSync('courseid');
-  //   api.webaddQuestion({
-  //     methods: 'POST',
-  //     data: {
-  //       sessionid: this.data.sessionid,
-  //       uid: this.data.uid,
-  //       categoryid: categoryid,
-  //       courseid: courseid,
-  //       content: '',
-  //       title: '',
-  //       problem_attachment: '',
-  //       iswechat: '',
-  //     },
-  //     success: (res) => {
-  //       wx.hideToast();
-  //       var data = res.data;
-  //       if (data.errcode == 0) {
-  //         console.log(data);
-  //       } else {
-  //         common.showToast({
-  //           title: data.errmsg
-  //         });
-  //       }
-  //     }
-  //   })
-  // },
-  // //有问必答_评价工单
-  // addquestionjudge: function () {
-  //   var categoryid = wx.getStorageSync('categoryid');
-  //   var courseid = wx.getStorageSync('courseid');
-  //   api.addquestionjudge({
-  //     methods: 'POST',
-  //     data: {
-  //       sessionid: this.data.sessionid,
-  //       uid: this.data.uid,
-  //       categoryid: categoryid,
-  //       courseid: courseid,
-  //     },
-  //     success: (res) => {
-  //       wx.hideToast();
-  //       var data = res.data;
-  //       if (data.errcode == 0) {
-  //         console.log(data);
-  //       } else {
-  //         common.showToast({
-  //           title: data.errmsg
-  //         });
-  //       }
-  //     }
-  //   })
-  // },
   //有问必答_撤销工单
   undoQuestion: function () {
     api.undoQuestion({
@@ -304,8 +204,10 @@ Page({
         if (data.errcode == 0) {
           console.log(data);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -326,36 +228,15 @@ Page({
         if (data.errcode == 0) {
           console.log(data);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
     });
   },
-  // //有问必答_修改工单状态
-  // modifyConversationState: function () {
-  //   api.modifyConversationState({
-  //     methods: 'POST',
-  //     data: {
-  //       sessionid: this.data.sessionid,
-  //       uid: this.data.uid,
-  //       orderid: this.data.orderid,
-  //       state: 3,
-  //     },
-  //     success: (res) => {
-  //       wx.hideToast();
-  //       var data = res.data;
-  //       if (data.errcode == 0) {
-  //         console.log(data);
-  //       } else {
-  //         common.showToast({
-  //           title: data.errmsg
-  //         });
-  //       }
-  //     }
-  //   })
-  // },
   //有问必答_修改对话状态
   modifyConversationState: function () {
     api.modifyConversationState({
@@ -372,8 +253,10 @@ Page({
         if (data.errcode == 0) {
           console.log(data);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -396,8 +279,10 @@ Page({
         if (data.errcode == 0) {
           console.log(data);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

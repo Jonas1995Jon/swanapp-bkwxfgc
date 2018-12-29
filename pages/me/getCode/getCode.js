@@ -284,8 +284,10 @@ Page({
   },
   checkCode: function () {
     if (this.data.focus_value == "" || this.data.focus_value.length < 6) {
-      common.showToast({
-        title: '请输入6位验证码'
+      swan.showModal({
+        title: '提示',
+        content: '请输入6位验证码',
+        showCancel: false
       });
     } else {
       var yzm = this.data.focus_value;
@@ -324,8 +326,10 @@ Page({
                 });
               } else {
                 //验证码发送失败等错误
-                common.showToast({
-                  title: data.errmsg
+                swan.showToast({
+                  title: data.errmsg,
+            icon: 'success',
+            duration: 1500
                 });
               }
               console.log(data);
@@ -333,8 +337,10 @@ Page({
           });
         }
       } else {
-        common.showToast({
-          title: '请输入6位验证码'
+        swan.showModal({
+          title: '提示',
+          content: '请输入6位验证码',
+          showCancel: false
         });
       }
     }
@@ -360,8 +366,10 @@ Page({
             this.countdown(this);
           } else {
             //验证码发送失败等错误
-            common.showToast({
-              title: data.errmsg
+            swan.showToast({
+              title: data.errmsg,
+            icon: 'success',
+            duration: 1500
             });
           }
           console.log(data);
@@ -428,8 +436,10 @@ Page({
           // })
         } else {
           //验证码发送失败等错误
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
         console.log(data);

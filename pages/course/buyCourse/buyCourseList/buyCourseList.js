@@ -65,7 +65,7 @@ Page({
     this.commoditylist(courselistItem);
 
     // if (courselistItem.package.length <= 1) {
-    //   common.showToast({
+    //   swan.showToast({
     //     title: '此课程暂无可购买的班型',
     //     duration: 2000
     //   });
@@ -105,14 +105,18 @@ Page({
               url: url
             });
           } else {
-            common.showToast({
-              title: '此课程暂未开放购买'
+            swan.showModal({
+              title: '提示',
+              content: '此课程暂未开放购买',
+              showCancel: false
             });
             return;
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

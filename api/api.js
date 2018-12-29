@@ -10,7 +10,7 @@ const hosts = 'https://apialy2.cnbkw.com';
 const wxRequest = (params, url) => {
   getNetworkType(); //获取网络状态
   if (url != host + "/App/loadpaper/loadquestion_v2.3.ashx" && url != host + "/App/setremainder.ashx" && url != host + "/App/setonline.ashx" && url != host4 + "/CollectLog") {
-    common.showToast({
+    swan.showToast({
       title: '加载中',
       icon: 'loading',
       duration: 10000
@@ -44,7 +44,7 @@ const wxRequest = (params, url) => {
     },
     fail: res => {
       swan.hideToast();
-      // common.showToast({
+      // swan.showToast({
       //   title: '请求超时',
       //   icon: 'succes',
       //   duration: 1000
@@ -61,7 +61,7 @@ function getNetworkType() {
     complete: function (res) {
       //console.log(res);
       if (res.isConnected == false || res.networkType == "none") {
-        common.showModal({
+        swan.showModal({
           title: '温馨提示',
           content: '当前网络不可用，请检查网络设置！',
           showCancel: false,
@@ -77,7 +77,7 @@ function getNetworkType() {
   });
   swan.onNetworkStatusChange(function (res) {
     if (res.isConnected == false || res.networkType == "none") {
-      common.showModal({
+      swan.showModal({
         title: '温馨提示',
         content: '当前网络不可用，请检查网络设置！',
         showCancel: false,

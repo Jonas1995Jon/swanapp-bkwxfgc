@@ -106,8 +106,10 @@ Page({
           var courselist = JSON.stringify(courselist);
           swan.setStorageSync('bk_courselist', courselist);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

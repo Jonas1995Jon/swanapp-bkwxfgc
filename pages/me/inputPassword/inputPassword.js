@@ -44,8 +44,10 @@ Page({
    */
   onShow: function () {
     if (this.data.infoid != '') {
-      common.showToast({
-        title: '密码重置成功，请重新登录！'
+      swan.showModal({
+        title: '提示',
+        content: '密码重置成功，请重新登录！',
+        showCancel: false
       });
       // var url = '../resetPassword/resetPassword?infoid=' + this.data.infoid;
       // wx.navigateTo({
@@ -118,8 +120,10 @@ Page({
           });
         } else {
           //验证码发送失败等错误
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

@@ -87,8 +87,10 @@ Page({
           //console.log("bigclass: " + decodeURI(data.bigclass[0].title));
           //wx.setStorageSync('wx_openid', data.openid)
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

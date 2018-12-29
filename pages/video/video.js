@@ -381,12 +381,16 @@ Page({
           console.log(data);
           this.setData({ knowpointList: data });
         } else if (data.errcode == 40002) {
-          common.showToast({
-            title: '此课程暂无视频讲解'
+          swan.showModal({
+            title: '提示',
+            content: '此课程暂无视频讲解',
+            showCancel: false
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
         // this.mdFolder();
@@ -443,7 +447,7 @@ Page({
             }
           });
         } else {
-          // common.showToast({
+          // swan.showToast({
           //   title: data.errmsg
           // });
           swan.showModal({
@@ -546,8 +550,10 @@ Page({
             }
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -883,8 +889,10 @@ Page({
           // videoCategoryid = "";
           // videoCourseid = "";
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -959,8 +967,10 @@ Page({
           // videoCategoryid = "";
           // videoCourseid = "";
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

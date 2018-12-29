@@ -146,8 +146,10 @@ Page({
           }
           this.setData({ couponList: data.list });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

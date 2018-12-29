@@ -189,8 +189,10 @@ Page({
           swan.setStorageSync('bk_bigclass', bigclass);
           this.getPublicCourseList();
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -221,8 +223,10 @@ Page({
             swan.setStorageSync('coursename', data.courselist[0].title);
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -256,8 +260,10 @@ Page({
           this.setData({ public_list_copy: data.vip_list });
           this.makeData("public", data.vip_list);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -284,8 +290,10 @@ Page({
           //   this.scanCodeJoin(categoryid, courseid, index);
           // }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -353,8 +361,10 @@ Page({
             this.checkAccount();
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -1023,8 +1033,10 @@ Page({
           request_thirdauth(0);
         } else {
           //尚未绑定帮考网账号等错误
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -1176,8 +1188,10 @@ Page({
           request_thirdauth(0);
         } else {
           //尚未绑定帮考网账号等错误
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

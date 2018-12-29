@@ -308,7 +308,7 @@ function request_bindinguser_step3(data) {
         common.showModal({
           title: '温馨提示',
           // content: data.errmsg,
-          content: '请输入内容',
+          content: '请输入有误',
           showCancel: false,
           success: function (res) {
             if (res.confirm) {

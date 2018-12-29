@@ -92,8 +92,10 @@ Page({
           this.setData({ agreement: agreement });
           WxParse.wxParse('agreement', 'html', agreement, this, 5);
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

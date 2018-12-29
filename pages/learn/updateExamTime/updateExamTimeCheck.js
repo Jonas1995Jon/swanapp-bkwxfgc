@@ -81,8 +81,10 @@ Page({
   },
   checkCode: function () {
     if (this.data.focus_value == '') {
-      common.showToast({
-        title: '请输入6位验证码'
+      swan.showModal({
+        title: '提示',
+        content: '请输入6位验证码',
+        showCancel: false
       });
     } else {
       var yzm = this.data.focus_value;
@@ -117,15 +119,19 @@ Page({
               });
             } else {
               //验证码发送失败等错误
-              common.showToast({
-                title: data.errmsg
+              swan.showToast({
+                title: data.errmsg,
+            icon: 'success',
+            duration: 1500
               });
             }
           }
         });
       } else {
-        common.showToast({
-          title: '请输入6位验证码'
+        swan.showModal({
+          title: '提示',
+          content: '请输入6位验证码',
+          showCancel: false
         });
       }
     }
@@ -152,8 +158,10 @@ Page({
           this.countdown(this);
         } else {
           //验证码发送失败等错误
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
         console.log(data);
@@ -200,8 +208,10 @@ Page({
         if (data.errcode == 0) {
           this.setData({ mobile: data.tel });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

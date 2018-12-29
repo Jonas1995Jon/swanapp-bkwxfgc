@@ -321,8 +321,10 @@ Page({
             // console.log(this.data.record)
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -385,7 +387,7 @@ Page({
           var videomodulelist = res.data.videomodulelist;
           for (var i = 0; i < videomodulelist.length; i++) {
             var module = videomodulelist[i].module;
-            if (checkcourseVO['m' + module] == '0') {
+            if (checkcourseVO['m' + module] == '0' || videomodulelist[i].videocount == 0) {
               videomodulelist[i].show = false;
             } else {
               videomodulelist[i].show = true;
@@ -457,8 +459,10 @@ Page({
             });
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       },

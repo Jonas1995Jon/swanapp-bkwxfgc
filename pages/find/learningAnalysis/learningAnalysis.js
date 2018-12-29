@@ -249,8 +249,10 @@ Page({
           // this.data.lineCanvasIdArr.push('lineCanvas', 'lineCanvas1', 'lineCanvas2', 'lineCanvas3');
           this.setData({ lineCanvasArr: this.data.lineCanvasArr });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

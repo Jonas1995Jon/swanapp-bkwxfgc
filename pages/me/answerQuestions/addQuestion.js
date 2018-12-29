@@ -52,7 +52,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
@@ -67,36 +67,40 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
   bindFormSubmit: function (e) {
     var textarea = e.detail.value.textarea;
     if (textarea.length < 1 || textarea == undefined) {
-      common.showToast({
-        title: '请输入您的问题描述'
+      swan.showModal({
+        title: '提示',
+        content: '请输入您的问题描述',
+        showCancel: false
       });
     } else {
-      common.showToast({
-        title: '问题提交中'
+      swan.showToast({
+        title: '问题提交中',
+        icon: 'success',
+        duration: 1500
       });
       this.setData({ hiddenSubmit: 1 });
       this.setData({ textareaStr: textarea });
@@ -176,8 +180,10 @@ Page({
             delta: 1
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -217,8 +223,10 @@ Page({
             delta: 1
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -255,7 +263,7 @@ Page({
       fail: function (res) {
         console.log(res);
       },
-      complete: function (res) {}
+      complete: function (res) { }
     });
   },
   chooseImageTap: function () {

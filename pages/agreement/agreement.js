@@ -83,8 +83,10 @@ Page({
     if (click == true) {
       this.supplement();
     } else {
-      common.showToast({
-        title: '请勾选同意签署保过协议'
+      swan.showModal({
+        title: '提示',
+        content: '请勾选同意签署保过协议',
+        showCancel: false
       });
     }
   },
@@ -144,8 +146,10 @@ Page({
             delta: pages.length - 2
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

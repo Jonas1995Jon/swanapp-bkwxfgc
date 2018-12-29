@@ -132,8 +132,10 @@ Page({
           //console.log("bigclass: " + decodeURI(data.bigclass[0].title));
           //wx.setStorageSync('wx_openid', data.openid)
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -179,8 +181,10 @@ Page({
           // }
           this.setData({ bigclass: bigclass });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -282,8 +286,10 @@ Page({
             // prevPage = pages[pages.length - 1];
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

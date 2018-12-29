@@ -84,7 +84,7 @@ Page({
   },
   kqTimeClick: function () {
     if (this.data.signUpIndex == 1) {
-      common.showModal({
+      swan.showModal({
         title: '温馨提示',
         content: '建议您在帮考网官方网站（www.bkw.cn）报名后，再来修改考期！',
         confirmText: "确定",
@@ -183,8 +183,10 @@ Page({
             kqTimeHidden: !this.data.kqTimeHidden
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -216,8 +218,10 @@ Page({
             url: 'updateExamTimeCheck?token=' + data.token
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -229,7 +233,7 @@ Page({
       if (this.data.kqTimeIndex == -1) {
         content = '请选择考试时间！';
       }
-      common.showModal({
+      swan.showModal({
         title: '温馨提示',
         content: content,
         confirmText: "确定",

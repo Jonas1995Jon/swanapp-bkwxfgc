@@ -224,7 +224,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
@@ -306,84 +306,17 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
-  //   /**
-  //  * 读取试题-v2.3
-  //  */
-  //   request_loadquestion: function (data, isparsecontent) {
-  //     api.loadquestion({
-  //       methods: 'POST',
-  //       data: {
-  //         sessionid: sessionid,
-  //         uid: uid,
-  //         courseid: courseid,
-  //         unitid: data.unitid,
-  //         paperid: data.paperid,
-  //         qid: data.qid,
-  //         videosource: getApp().globalData.videosource,
-  //       },
-  //       success: (res) => {
-  //         var data = res.data;
-  //         //解析content xml 默认解析第0个
-  //         var paperindex = this.data.paperindex;
-  //         var mainqueArr = this.data.mainqueArr;
-  //         if (data.errcode == 0) {//请求成功读取试题-v2.3
-  //           //防止重复添加
-  //           if (mainqueArr.length > 0) {
-  //             var isExist = false;
-  //             for (var i = mainqueArr.length - 1; i >= 0; i--) {
-  //               if (data.mainque[0].qid == mainqueArr[i].qid) {
-  //                 isExist = true;
-  //               }
-  //             }
-  //             if (!isExist) {
-  //               this.data.mainqueArr[paperindex] = data.mainque[0];
-  //               // this.setData({ mainque: data.mainque[0] });
-  //               this.setData({ mainqueArr: this.data.mainqueArr });
-  //               // this.paserRightAnswer();
-  //             }
-  //           } else {
-  //             for (var i = 0; i < this.data.question.list.length; i++) {
-  //               this.data.mainqueArr.push('');
-  //             }
-  //             this.data.mainqueArr[paperindex] = data.mainque[0];
-  //             this.setData({ mainqueArr: this.data.mainqueArr });
-  //             // this.setData({ mainque: data.mainque[0] });
-  //             // this.paserRightAnswer();
-  //           }
-
-  //           //isparsecontent==1解析congtent
-  //           if (isparsecontent == 1) {
-  //             this.parsecontent(paperindex);
-  //           }
-  //         } else if (data.errcode == 40036) {//请先购买课程
-  //           common.showToast({
-  //             title: data.errmsg
-  //           });
-  //         } else if (data.errcode == 40052) {//未找到会话信息，请重新登录
-  //           common.showToast({
-  //             title: data.errmsg
-  //           });
-  //           //request_thirdauth();
-  //         } else {
-  //           common.showToast({
-  //             title: data.errmsg
-  //           });
-  //         }
-  //         //console.log(data);
-  //       }
-  //     })
-  //   },
+  onShareAppMessage: function () { },
   loadquestion: function (paperindex, isparsecontent, isChildren) {
     var unitid = this.data.unitid;
     var paperid = this.data.paperid;
@@ -467,18 +400,24 @@ Page({
           }
         } else if (data.errcode == 40036) {
           //请先购买课程
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         } else if (data.errcode == 40052) {
           //未找到会话信息，请重新登录
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
           //request_thirdauth();
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -807,7 +746,7 @@ Page({
           appbuild: getApp().globalData.appbuild,
           mobiletype: model
           //防止错误上传日志
-        };if (this.data.learnType == undefined || this.data.unitid == undefined || this.data.paperid == undefined || this.data.QId == undefined) {
+        }; if (this.data.learnType == undefined || this.data.unitid == undefined || this.data.paperid == undefined || this.data.QId == undefined) {
           return;
         }
         request.request_collectLog(data);
@@ -1141,6 +1080,7 @@ Page({
         url = '../report/report?paperid=' + this.data.question.paperid + '&unitid=' + this.data.unitid + '&learnType=' + this.data.learnType + '&prevPage=2';
       }
       // console.log('url=' + url);
+      url = url.replace(/%/g, '%25');
       swan.navigateTo({
         url: encodeURI(url)
       });
@@ -1379,7 +1319,7 @@ Page({
             confirmText: "确定",
             showCancel: false,
             success: function (res) {
-              if (res.confirm) {}
+              if (res.confirm) { }
             }
           });
         }

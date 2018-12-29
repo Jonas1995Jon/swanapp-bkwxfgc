@@ -59,7 +59,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
@@ -86,27 +86,27 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
   studyhistory: function (state) {
     var courseid = swan.getStorageSync('courseid');
     api.studyhistory({
@@ -136,14 +136,17 @@ Page({
             }
           }
           if (state == 1) {
+            for (var i = 0; i < data.val.length; i++) {
+              var wastetime = data.val[i].wastetime; //本次自测时间
+              if (wastetime.indexOf('秒') == -1) {
+                data.val[i].wastetime = this.parseTime(wastetime);
+              }
+              data.val[i].accuracy = data.val[i].accuracy.replace(/%/g, '');
+            }
             if (this.data.pageindex > 1) {
               var studyhistoryYesVal = this.data.studyhistoryYes.val;
               studyhistoryYesVal = studyhistoryYesVal.concat(data.val);
               this.data.studyhistoryYes.val = studyhistoryYesVal;
-              for (var i = 0; i < this.data.studyhistoryYes.val.length; i++) {
-                var wastetime = this.data.studyhistoryYes.val[i].wastetime; //本次自测时间
-                this.data.studyhistoryYes.val[i].wastetime = this.parseTime(wastetime);
-              }
               this.setData({ studyhistoryYes: this.data.studyhistoryYes });
             } else {
               var arc_data = new Array();
@@ -151,9 +154,6 @@ Page({
               var arc_l_rotate = new Array();
               var arc_r_rotate = new Array();
               for (var i = 0; i < data.val.length; i++) {
-                var wastetime = data.val[i].wastetime; //本次自测时间
-                data.val[i].wastetime = this.parseTime(wastetime);
-                data.val[i].accuracy = data.val[i].accuracy.replace(/%/g, '');
                 var animation1 = swan.createAnimation({
                   transformOrigin: "50% 50%",
                   duration: 600,
@@ -228,8 +228,10 @@ Page({
             }
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -306,8 +308,10 @@ Page({
             url: encodeURI(url)
           });
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -333,7 +337,7 @@ Page({
   //           url: encodeURI(url)
   //         });
   //       } else {
-  //         common.showToast({
+  //         swan.showToast({
   //           title: data.errmsg
   //         });
   //       }

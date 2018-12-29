@@ -109,7 +109,7 @@ Page({
           swan.setStorageSync('categoryname', coursename);
         }
         //  else {
-        //   common.showToast({
+        //   swan.showToast({
         //     title: data.errmsg
         //   });
         // }
@@ -168,8 +168,10 @@ Page({
             });
           }
         } else {
-          common.showToast({
-            title: data.errmsg
+          swan.showToast({
+            title: data.errmsg,
+            icon: 'success',
+            duration: 1500
           });
         }
       }

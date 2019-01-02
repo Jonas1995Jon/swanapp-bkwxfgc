@@ -77,10 +77,10 @@
           </view>
         </block>
         <block s-else>
-          <!-- <view class="cell_bd">{{cell.title}}</view> -->
-          <view class="cell_bd">{{cell.title}}
+          <view class="cell_bd">{{cell.title}}</view>
+          <!-- <view class="cell_bd">{{cell.title}}
             <button class="cs_button" open-type="contact" session-from='weixinapp'></button>
-          </view>
+          </view> -->
         </block>
         <view class="cell_ft cell_ft_in_access"></view>
       </view>

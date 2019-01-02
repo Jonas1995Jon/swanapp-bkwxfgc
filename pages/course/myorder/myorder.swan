@@ -9,7 +9,7 @@
 </view>
 <swiper class='swiper' bindchange="swiperChange" current="{{currentindex}}">
   <swiper-item>
-    <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:1125rpx;'>
+    <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:100%;'>
       <block s-key="myorderYes" s-for="myorderYesItem, myorderYesIndex in myorderYes">
       <view class='topline'></view>
       <view class='myorder_con' bindtap='orderYesClick' data-orderguid='{{myorderYesItem.orderguid}}'>
@@ -33,7 +33,7 @@
     </scroll-view>
   </swiper-item>
   <swiper-item>
-    <scroll-view scroll-y bindscrolltolower="scrolltolower">
+    <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:100%;'>
       <block s-key="myorderNo" s-for="myorderNoItem, myorderNoIndex in myorderNo">
       <view class='topline'></view>
       <view class='myorder_con' bindtap='payBtnClick' data-orderguid='{{myorderNoItem.orderguid}}'>

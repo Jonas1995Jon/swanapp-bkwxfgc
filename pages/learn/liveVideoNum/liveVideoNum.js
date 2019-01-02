@@ -64,6 +64,7 @@ Page({
     swan.setNavigationBarTitle({
       title: "视频"
     });
+    this.checkSystemOS();
     this.getvideomodulelistbycid();
     this.setSwitchClassCategory(swan.getStorageSync('navIndex') > 0 ? swan.getStorageSync('navIndex') : 0);
     request.request_checkcourse();
@@ -197,22 +198,7 @@ Page({
           }
         }
       } else {
-        swan.showModal({
-          title: '温馨提示',
-          content: '您尚未购买此课程，请先购买！',
-          confirmText: "立即购买",
-          cancelText: "残忍拒绝",
-          success: function (res) {
-            if (res.confirm) {
-              var url = '../../course/buyCourse/buyCourseDetail/buyCourseDetail';
-              swan.navigateTo({
-                url: url
-              });
-            } else {
-              return;
-            }
-          }
-        });
+        common.hintInfo(this.data.mobileOS);
       }
     }
   },
@@ -491,5 +477,13 @@ Page({
     }
     videoUrl = videoUrl.replace("http://", "https://");
     return videoUrl;
-  }
+  },
+  checkSystemOS: function () {
+    var that = this;
+    swan.getSystemInfo({
+      success: function (res) {
+        that.setData({ "mobileOS": res.platform });
+      }
+    });
+  },
 });

@@ -30,6 +30,7 @@ Page({
     swan.setNavigationBarTitle({
       title: options.title
     });
+    this.checkSystemOS();
     var liveindex = options.liveindex;
     this.setData({ liveindex: liveindex });
     bk_userinfo = swan.getStorageSync('bk_userinfo');
@@ -59,17 +60,17 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
@@ -81,12 +82,12 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
@@ -170,20 +171,7 @@ Page({
               this.countDownHandler();
             }
           } else {
-            swan.showModal({
-              title: '温馨提示',
-              content: data.errmsg,
-              confirmText: "立即购买",
-              cancelText: "残忍拒绝",
-              success: function (res) {
-                if (res.confirm) {
-                  swan.navigateTo({
-                    url: '../course/buyCourse/buyCourseDetail/buyCourseDetail'
-                  });
-                  return;
-                } else {}
-              }
-            });
+            common.hintInfo(this.data.mobileOS);
           }
         } else {
           if (data.errcode == 40002) {
@@ -201,8 +189,8 @@ Page({
           } else {
             swan.showToast({
               title: data.errmsg,
-            icon: 'success',
-            duration: 1500
+              icon: 'success',
+              duration: 1500
             });
           }
         }
@@ -256,20 +244,7 @@ Page({
           this.checkIsBuy(videotype, channelnumber, chatroomid, index);
         } else if (data.errcode == 40003) {
           //请先购买课程
-          swan.showModal({
-            title: '温馨提示',
-            content: data.errmsg,
-            confirmText: "立即购买",
-            cancelText: "残忍拒绝",
-            success: function (res) {
-              if (res.confirm) {
-                swan.navigateTo({
-                  url: '../course/buyCourse/buyCourseDetail/buyCourseDetail'
-                });
-                return;
-              } else {}
-            }
-          });
+          common.hintInfo(this.data.mobileOS);
         } else if (data.errcode == 40052) {
           //未找到会话信息，请重新登录
           request_thirdauth(0);
@@ -280,7 +255,7 @@ Page({
             content: data.errmsg,
             confirmText: "确定",
             showCancel: false,
-            success: function (res) {}
+            success: function (res) { }
           });
         }
       }
@@ -324,7 +299,7 @@ Page({
           content: '今日直播回放正在火速剪切上传中，敬请期待。',
           confirmText: "确定",
           showCancel: false,
-          success: function (res) {}
+          success: function (res) { }
         });
       } else {
         var url = 'liveRoom/liveRoom?channelnumber=' + channelnumber + "&chatroomid=" + chatroomid;
@@ -391,6 +366,15 @@ Page({
     dateObj = dateObj.replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '').replace(/(-)/g, '/');
     dateObj = dateObj.slice(0, dateObj.indexOf("."));
     return new Date(dateObj);
+  },
+  // 获取操作系统
+  checkSystemOS: function () {
+    var that = this;
+    swan.getSystemInfo({
+      success: function (res) {
+        that.setData({ "mobileOS": res.platform });
+      }
+    });
   },
   //获取考试类别
   getCourseByCategory: function (id) {

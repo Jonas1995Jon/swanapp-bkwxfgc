@@ -329,10 +329,6 @@ Page({
         var url = '../course/myorder/myorder';
         this.checkUserInfo(url);
         break;
-      // case 4:
-      //   var url = "../me/mylive/mylive";
-      //   this.checkUserInfo(url);
-      //   break;
       default:
         break;
 
@@ -620,17 +616,7 @@ Page({
     var that = this;
     swan.getSystemInfo({
       success: function (res) {
-        console.log(res);
-        that.setData({
-          systemInfo: res
-        });
-        if (res.platform == "devtools") {
-          that.setData({ "mobileOS": "devtools" });
-        } else if (res.platform == "ios") {
-          that.setData({ "mobileOS": "ios" });
-        } else if (res.platform == "android") {
-          that.setData({ "mobileOS": "android" });
-        }
+        that.setData({ "mobileOS": res.platform });
       }
     });
   }

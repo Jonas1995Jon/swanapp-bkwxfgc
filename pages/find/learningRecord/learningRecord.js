@@ -153,7 +153,7 @@ Page({
               var arc_data2 = new Array();
               var arc_l_rotate = new Array();
               var arc_r_rotate = new Array();
-              for (var i = 0; i < data.val.length; i++) {
+              for (let i = 0; i < data.val.length; i++) {
                 var animation1 = swan.createAnimation({
                   transformOrigin: "50% 50%",
                   duration: 600,
@@ -317,33 +317,6 @@ Page({
       }
     });
   },
-  // request_loadinitbylid: function (paperid, unitid, learnType, free) {
-  //   api.loadinitbylid({
-  //     methods: 'POST',
-  //     data: {
-  //       sessionid: sessionid,
-  //       uid: uid,
-  //       paperid: paperid,
-  //       videosource: app.globalData.videosource,
-  //       free: free,
-  //     },
-  //     success: (res) => {
-  //       var data = res.data;
-  //       if (data.errcode == 0) {
-  //         var question = JSON.stringify(data);
-  //         var url = '../../course/paper/studyPage/studyPage?unitid=' + unitid + '&paperid=' + data.paperid + '&question=' + question + '&learnType=' + learnType + '&history=1' + '&paperTitle=' + data.unitname;
-  //         //console.log('url=' + url);
-  //         wx.navigateTo({
-  //           url: encodeURI(url)
-  //         });
-  //       } else {
-  //         swan.showToast({
-  //           title: data.errmsg
-  //         });
-  //       }
-  //     }
-  //   })
-  // },
   //加载更多
   scrolltolower: function (e) {
     console.log('加载更多' + e);
@@ -391,48 +364,4 @@ Page({
     }
     return `${mm}分${ss}秒`;
   }
-  // showCicle: function (e,index){
-  //   var currentaccuracy = e;
-  //   console.log(currentaccuracy)
-  //   var arc_l_rotate = -135 + 3.6 * currentaccuracy;
-  //   var arc_r_rotate = -135 + 3.6 * (currentaccuracy - 50);
-  //   var animation1 = wx.createAnimation({
-  //     transformOrigin: "50% 50%",
-  //     duration: 600,
-  //     timingFunction: "linear",
-  //     delay: 0
-  //   })
-  //   if (currentaccuracy <= 50) {
-  //     setTimeout(function () {
-  //       animation1.rotate(arc_l_rotate).step()
-  //       this.setData({
-  //         arc_lData: animation1.export()
-  //       })
-  //       this.data.studyhistoryYes.val[index].arc_lData = animation1.export();
-  //       console.log(this.data.arc_lData)
-  //       console.log(this.data.studyhistoryYes.val[index].arc_lData)
-  //     }.bind(this), 500)
-  //   } else {
-  //     setTimeout(function () {
-  //       animation1.rotate(45).step()
-  //       this.setData({
-  //         arc_lData: animation1.export()
-  //       })
-  //       this.data.studyhistoryYes.val[index].arc_lData = animation1.export();
-  //     }.bind(this), 500)
-  //     var animation2 = wx.createAnimation({
-  //       transformOrigin: "50% 50%",
-  //       duration: 600,
-  //       timingFunction: "linear",
-  //       delay: 600
-  //     })
-  //     setTimeout(function () {
-  //       animation2.rotate(arc_r_rotate).step()
-  //       this.setData({
-  //         arc_rData: animation2.export()
-  //       })
-  //       this.data.studyhistoryYes.val[index].arc_rData = animation2.export();
-  //     }.bind(this), 500)
-  //   }
-  // },
 });

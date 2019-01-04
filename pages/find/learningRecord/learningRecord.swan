@@ -12,7 +12,7 @@
 <view class='learningRecord_wrap'>
   <swiper class='swiper' bindchange="swiperChange" current="{{currentindex}}">
     <swiper-item>
-      <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:627px;'>
+      <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:100%;'>
         <block s-key="studyhistoryYes" s-for="studyhistoryYes, studyhistoryYesindex in studyhistoryYes.val">
           <view class='learningRecord_list' hover-class='list_l_action' bindtap='studyhistoryYesListClick' data-index='{{studyhistoryYesindex}}'>
             <view class='list_in'>
@@ -50,7 +50,7 @@
       </scroll-view>
     </swiper-item>
     <swiper-item>
-      <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:627px;'>
+      <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:100%;'>
         <block s-key="studyhistoryNo" s-for="studyhistoryNo, studyhistoryNoindex in studyhistoryNo.val">
           <view class='learningRecord_list' hover-class='list_l_action' bindtap='studyhistoryNoListClick' data-index='{{studyhistoryNoindex}}'>
             <view class='list_in'>

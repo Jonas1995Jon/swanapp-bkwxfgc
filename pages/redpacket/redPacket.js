@@ -344,7 +344,7 @@ Page({
           });
         }
       } else {
-        common.hintInfo(this.data.mobileOS);
+        common.hintInfo();
       }
     }
     if (checkcourseVO.m5 == 1 || checkcourseVO.m6 == 1 || checkcourseVO.m6 == 3) {
@@ -414,7 +414,7 @@ Page({
         });
       }
     } else {
-      common.hintInfo(this.data.mobileOS);
+      common.hintInfo();
     }
   },
   liveClick: function (event) {
@@ -459,7 +459,7 @@ Page({
       case 3:
         var checkcourseVO = swan.getStorageSync('checkcourseVO');
         if (checkcourseVO.banxing_tiku == 0) {
-          common.hintInfo(this.data.mobileOS);
+          common.hintInfo();
         } else {
           swan.navigateTo({
             url: '../answerquestion/answerQuestion'
@@ -1137,7 +1137,7 @@ Page({
           });
         }
       } else {
-        common.hintInfo(this.data.mobileOS);
+        common.hintInfo();
       }
     }
   },

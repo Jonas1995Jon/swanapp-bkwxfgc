@@ -32,17 +32,17 @@ const showModalMethod = params => {
   });
 };
 // 未购买课程提示
-function hintInfo(mobileOS) {
-  if (mobileOS == 'ios') {
-    swan.showModal({
-      title: '温馨提示',
-      content: '请先使用帮考网APP或前往官网购买该课程!',
-      showCancel: false,
-      success: function (res) {
-        return;
-      }
-    });
-  } else {
+function hintInfo() {
+  // if (mobileOS == 'ios') {
+  //   swan.showModal({
+  //     title: '温馨提示',
+  //     content: '请先前往帮考网官网购买该课程!',
+  //     showCancel: false,
+  //     success: function (res) {
+  //       return;
+  //     }
+  //   });
+  // } else {
     swan.showModal({
       title: '温馨提示',
       content: '您尚未购买此课程，请先购买!',
@@ -50,7 +50,7 @@ function hintInfo(mobileOS) {
       cancelText: "残忍拒绝",
       success: function (res) {
         if (res.confirm) {
-          var url = '../course/buyCourse/buyCourseDetail/buyCourseDetail';
+          var url = '/pages/course/buyCourse/buyCourseDetail/buyCourseDetail';
           swan.navigateTo({
             url: url
           });
@@ -59,7 +59,17 @@ function hintInfo(mobileOS) {
         }
       }
     });
-  }
+  // }
+};
+function showModalHint() {
+  swan.showModal({
+    title: '提示',
+    content: '非常抱歉，该小程序暂不支持IOS在线支付',
+    showCancel: false,
+    success: res => {
+      return;
+    }
+  });
 };
 /**
  * 时间格式化
@@ -347,7 +357,8 @@ function checkSession() {
 module.exports = {
   showToast,
   showModal,
-  hintInfo : hintInfo,
+  hintInfo: hintInfo,
+  showModalHint: showModalHint,
   random: random,
   validatemobile: validatemobile,
   // singature: singature,

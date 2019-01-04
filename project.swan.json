@@ -1,5 +1,5 @@
 {
-    "libVersion": "2.0.17",
+    "libVersion": "2.10.26",
     "appid": "14294201",
     "setting": {
         "urlCheck": true
@@ -28,8 +28,21 @@
             "socket": [
                 "wss://"
             ],
-            "uploadFile": null,
-            "downloadFile": null
+            "uploadFile": [
+                "https://apialy.cnbkw.com",
+                "https://apialy2.cnbkw.com",
+                "https://picture.cnbkw.com",
+                "https://api3.cnbkw.com"
+            ],
+            "downloadFile": [
+                "https://imgcdn.cnbkw.com",
+                "https://tu.cnbkw.com",
+                "https://apialy.cnbkw.com",
+                "https://apialy2.cnbkw.com",
+                "https://attachment.cnbkw.com",
+                "https://picture.cnbkw.com",
+                "https://alyvideo.cnbkw.com"
+            ]
         },
         "isExistsPackage": false,
         "webview_domains": [

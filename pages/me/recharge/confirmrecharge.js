@@ -16,7 +16,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.checkSystemOS();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -51,7 +53,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () {},  
+  
+  checkSystemOS: function () {
+    var that = this;
+    swan.getSystemInfo({
+      success: function (res) {
+        that.setData({ "mobileOS": res.platform });
+      }
+    });
+  },
 
   rechargeInput: function (event) {
     this.setData({
@@ -60,7 +71,11 @@ Page({
   },
 
   confirmClick: function (event) {
-    this.accountrecharge();
+    if (this.data.mobileOS == 'ios') {
+      common.showModalHint();
+    } else {
+      this.accountrecharge();
+    }    
   },
 
   // 下单
@@ -135,7 +150,9 @@ Page({
       },
       fail: err => {
         swan.showToast({
-          title: err.errMsg
+          title: '支付失败',
+          icon: 'success',
+          duration: 1500
         });
       }
     });
@@ -233,7 +250,7 @@ Page({
         } else {
           swan.showModal({
             title: '温馨提示',
-            content: '请求异常，如支付成功，请添加微信客服或拨打客服电话进行咨询！',
+            content: '请求异常，如支付成功，请联系客服或拨打客服电话进行咨询！',
             showCancel: false,
             success: function (res) {
               that.setData({ hiddenModal: true });

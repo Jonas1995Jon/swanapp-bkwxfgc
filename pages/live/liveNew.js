@@ -171,7 +171,7 @@ Page({
               this.countDownHandler();
             }
           } else {
-            common.hintInfo(this.data.mobileOS);
+            common.hintInfo();
           }
         } else {
           if (data.errcode == 40002) {
@@ -244,7 +244,7 @@ Page({
           this.checkIsBuy(videotype, channelnumber, chatroomid, index);
         } else if (data.errcode == 40003) {
           //请先购买课程
-          common.hintInfo(this.data.mobileOS);
+          common.hintInfo();
         } else if (data.errcode == 40052) {
           //未找到会话信息，请重新登录
           request_thirdauth(0);

@@ -4,7 +4,7 @@ var submitPaperBtnHidden = false; //交卷按钮是否隐藏
 var aldstat = require("./utils/ald-stat.js");
 const mtjwxsdk = require('./utils/mtj-wx-sdk.js');
 App({
-  onLaunch: function () {
+  onLaunch: function (opitons) {
     if (swan.canIUse('getUpdateManager')) {
       const updateManager = swan.getUpdateManager();
       updateManager.onCheckForUpdate(function (res) {
